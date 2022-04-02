@@ -1,0 +1,65 @@
+---( DESIGN )---
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("RutoHub [PL] [TR]", "Synapse")
+---( Hub )---
+local Tab = Window:NewTab("Hub/Ev")
+local Section = Tab:NewSection("HosGeldin!")
+local Section = Tab:NewSection("RutoHub Yeniden Kurulus")
+local Section = Tab:NewSection("Version [9.2.6]")
+---( Scripts )---
+local Tab = Window:NewTab("ScriptEvi")
+local Section = Tab:NewSection("LocalPlayer")
+Section:NewSlider("Hiz", "SpeedUp", 1500, 75, function(s)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+Section:NewSlider("Ziplama gucu", "JumpUp", 550, 50, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+end)
+---( Scripts )---
+local Tab = Window:NewTab("Silah Scripti")
+local Section = Tab:NewSection("Silah Modu")
+   Section:NewDropdown("Silah ver", "Gives the localplayer a gun", {"Tabanca", "Ponpali", "AK-47"}, function(v)
+        local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver[v].ITEMPICKUP
+        local Event = game:GetService("Workspace").Remote.ItemHandler
+        Event:InvokeServer(A_1)
+    end)
+--
+Section:NewDropdown("Silah Modu", "Makes the gun op", {"Tapanca", "Ponpali", "AK-47"}, function(v)
+        local module = nil
+        if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(v) then
+            module = require(game:GetService("Players").LocalPlayer.Backpack[v].GunStates)
+        elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild(v) then
+            module = require(game:GetService("Players").LocalPlayer.Character[v].GunStates)
+        end
+        if module ~= nil then
+            module["MaxAmmo"] = math.huge
+            module["CurrentAmmo"] = math.huge
+            module["StoredAmmo"] = math.huge
+            module["FireRate"] = 0.000001
+            module["Spread"] = 0
+            module["Range"] = math.huge
+            module["Bullets"] = 10
+            module["ReloadTime"] = 0.000001
+            module["AutoFire"] = true
+        end
+    end)
+---( Menu Helps )---
+local Tab = Window:NewTab("<------------------------>")
+---( Discord )---
+local Tab = Window:NewTab("Discord")
+local Section = Tab:NewSection("Discord sunucumuza gelin!")
+local Section = Tab:NewSection("Haberdar olmak icin.")
+Section:NewButton("https://discord.gg/Q7m72f7QC7 ", "Gelin sunucumuza", function()
+    print("Kopyalandi")
+end)
+---( How to hide gui )---
+local Tab = Window:NewTab("Menu Nasil Kapanir")
+local Section = Tab:NewSection("V Basarak Kapanir acilir")
+--
+Section:NewKeybind("V Ac Kapa", "KeybindInfo", Enum.KeyCode.V, function()
+	Library:ToggleUI()
+end)
+---( Developers )---
+local Tab = Window:NewTab("Kurucular")
+local Section = Tab:NewSection("! Akdeniz#9999 | Kurucu")
+local Section = Tab:NewSection("Metehan#2322 | Kurucu")
